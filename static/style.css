@@ -1,61 +1,119 @@
 body {
-    background-color: black;
-    color: #00ff00;
-    font-family: "Courier New", Courier, monospace;
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(
+    to bottom,
+    #E50000 0%,    /* Rojo */
+    #FF8D00 16.66%,/* Naranja */
+    #FFD500 33.33%,/* Amarillo */
+    #008026 50%,   /* Verde */
+    #004DFF 66.66%,/* Azul */
+    #750787 83.33% /* Morado */
+  );
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Contenedor principal */
 .matrix-container {
-    text-align: center;
-    margin-top: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 360px;
+  width: 90%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
 }
 
-h1 {
-    font-size: 36px;
-    margin-bottom: 30px;
-    animation: glow 2s infinite alternate;
+/* Título */
+.matrix-container h1 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #333;
+  position: relative;
 }
 
-input, button {
-    padding: 10px;
-    margin: 10px;
-    background-color: #111;
-    border: 1px solid #00ff00;
-    color: #00ff00;
-    font-size: 16px;
-    width: 250px;
+/* Línea de separación arcoíris debajo del título */
+.matrix-container h1::after {
+  content: '';
+  display: block;
+  height: 6px;
+  width: 100%;
+  border-radius: 3px;
+  margin-top: 10px;
+  background: linear-gradient(
+    to right,
+    #E50000, /* Rojo */
+    #FF8D00, /* Naranja */
+    #FFD500, /* Amarillo */
+    #008026, /* Verde */
+    #004DFF, /* Azul */
+    #750787  /* Morado */
+  );
 }
 
-button {
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Estilos de los inputs */
+.matrix-container input[type="text"],
+.matrix-container input[type="number"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
 }
 
-button:hover {
-    background-color: #00ff00;
-    color: black;
+/* Focus en inputs */
+.matrix-container input:focus {
+  outline: none;
+  border-color: #750787;
 }
 
-.result {
-    margin-top: 30px;
-    font-size: 24px;
-    font-weight: bold;
-    animation: blink 1s step-start 0s infinite;
+/* Botón de predicción */
+.matrix-container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background: #750787;
+  color: white;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
 }
 
-/* Animación estilo matrix */
-@keyframes glow {
-    from {
-        text-shadow: 0 0 10px #00ff00;
-    }
-    to {
-        text-shadow: 0 0 20px #00ff00, 0 0 30px #00ff00;
-    }
+/* Hover y active en botón */
+.matrix-container button:hover {
+  background: #004DFF;
+}
+.matrix-container button:active {
+  transform: scale(0.98);
 }
 
-@keyframes blink {
-    50% {
-        opacity: 0;
-    }
+/* Resultado */
+.matrix-container .result {
+  margin-top: 25px;
+  padding: 15px;
+  background: #fff;
+  border-left: 6px solid #750787;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Adaptaciones responsivas */
+@media (max-width: 400px) {
+  .matrix-container {
+    padding: 20px;
+  }
+.matrix-container h1 {
+  font-size: 1.6rem;
+}
 }

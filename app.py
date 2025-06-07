@@ -13,14 +13,22 @@ cols = ['age', 'sex', 'bmi', 'children', 'smoker', 'region']
 def home():
     return render_template("home.html")
 
-@app.route('/predict',methods=['POST'])
+@app.route('/predict', methods=['GET', 'POST'])
 def predict():
     int_features = [x for x in request.form.values()]
     final = np.array(int_features)
-    data_unseen = pd.DataFrame([final], columns = cols)
-    prediction = predict_model(model, data=data_unseen, round = 0)
-    prediction = int(prediction.Label[0])
-    return render_template('home.html',pred='Expected Bill will be {}'.format(prediction))
+
+    data_unseen = pd.DataFrame([final], columns=cols)
+
+    data_unseen['age'] = data_unseen['age'].astype(int)
+    data_unseen['bmi'] = data_unseen['bmi'].astype(float)
+    data_unseen['children'] = data_unseen['children'].astype(int)
+
+    prediction = predict_model(model, data=data_unseen, round=0)
+    prediction_result = int(prediction['prediction_label'].iloc[0])
+
+    return render_template('home.html', pred=f'Expected Bill will be {prediction_result}')
+
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():
