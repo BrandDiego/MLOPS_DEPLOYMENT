@@ -1,18 +1,28 @@
-# Imagen base con Python
+# Imagen base optimizada con las dependencias necesarias
 FROM python:3.11-slim
 
-# Establecer directorio de trabajo en el contenedor
+# Instalar dependencias del sistema (para lightgbm y libgomp)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Crear y setear el directorio de trabajo
 WORKDIR /app
 
-# Copiar los archivos del proyecto al contenedor
-COPY . /app
+# Copiar solo los archivos necesarios
+COPY requirements.txt .
 
-# Instalar las dependencias
+# Instalar dependencias de Python
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
-# Exponer el puerto en el que correrá la app Flask
+# Copiar el resto del código de la aplicación
+COPY . .
+
+# Exponer el puerto de la aplicación
 EXPOSE 5000
 
-# Comando para ejecutar la app
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
+# Comando para correr la app con Gunicorn
+CMD ["gunicorn", "-b", "0.0.0.0:80", "app:app"]
+
 

@@ -647,3 +647,47 @@ Alternately, you can install this by running `pip install pycaret[models]`
 2025-06-07 04:35:49,838:INFO:Preloading libraries
 2025-06-07 04:35:49,839:INFO:Set up data.
 2025-06-07 04:35:49,844:INFO:Set up index.
+2025-06-07 18:49:38,421:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2025-06-07 18:49:38,421:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2025-06-07 18:49:38,421:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2025-06-07 18:49:38,421:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2025-06-07 18:49:38,616:INFO:Initializing load_model()
+2025-06-07 18:49:38,616:INFO:load_model(model_name=model_pycaret, platform=None, authentication=None, verbose=True)
+2025-06-07 18:49:41,791:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2025-06-07 18:49:41,791:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2025-06-07 18:49:41,791:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2025-06-07 18:49:41,791:WARNING:
+'cuml' is a soft dependency and not included in the pycaret installation. Please run: `pip install cuml` to install.
+2025-06-07 18:49:41,909:INFO:Initializing load_model()
+2025-06-07 18:49:41,909:INFO:load_model(model_name=model_pycaret, platform=None, authentication=None, verbose=True)
+2025-06-07 18:50:01,141:INFO:Initializing predict_model()
+2025-06-07 18:50:01,141:INFO:predict_model(self=<pycaret.regression.oop.RegressionExperiment object at 0x0000021548239190>, estimator=Pipeline(memory=Memory(location=None),
+         steps=[('numerical_imputer',
+                 TransformerWrapper(include=['age', 'bmi', 'children'],
+                                    transformer=SimpleImputer())),
+                ('categorical_imputer',
+                 TransformerWrapper(include=['sex', 'smoker', 'region'],
+                                    transformer=SimpleImputer(strategy='most_frequent'))),
+                ('ordinal_encoding',
+                 TransformerWrapper(include=['sex', 'smoker'],
+                                    transfor...
+                                                              use_cat_names=True))),
+                ('polynomial_features',
+                 TransformerWrapper(transformer=PolynomialFeatures(include_bias=False))),
+                ('bin_numeric_features',
+                 TransformerWrapper(include=['age', 'bmi'],
+                                    transformer=KBinsDiscretizer(encode='ordinal',
+                                                                 strategy='kmeans'))),
+                ('normalize', TransformerWrapper(transformer=StandardScaler())),
+                ('trained_model', LinearRegression(n_jobs=-1))]), probability_threshold=None, encoded_labels=False, raw_score=False, round=0, verbose=True, ml_usecase=None, preprocess=True, encode_labels=<function _SupervisedExperiment.predict_model.<locals>.encode_labels at 0x000002152B2B51C0>)
+2025-06-07 18:50:01,142:INFO:Checking exceptions
+2025-06-07 18:50:01,142:INFO:Preloading libraries
+2025-06-07 18:50:01,144:INFO:Set up data.
+2025-06-07 18:50:01,158:INFO:Set up index.
