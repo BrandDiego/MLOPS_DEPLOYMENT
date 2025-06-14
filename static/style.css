@@ -9,7 +9,7 @@ body {
     #FFD500 33.33%,/* Amarillo */
     #008026 50%,   /* Verde */
     #004DFF 66.66%,/* Azul */
-    #750787 83.33% /* Morado */
+    #780000 83.33% /* Morado */
   );
   min-height: 100vh;
   display: flex;
