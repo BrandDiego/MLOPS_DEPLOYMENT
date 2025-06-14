@@ -1,0 +1,41 @@
+name: Deploy to Azure Web App
+
+on:
+  push:
+    branches:
+      - main   # rama principal para despliegue
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso 1: Obtener el código fuente
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # Paso 2: Iniciar sesión en Azure Container Registry
+    - name: Log in to Azure Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.AZURE_CONTAINER_REGISTRY }}
+        username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+        password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+
+    # Paso 3: Construir la imagen Docker
+    - name: Build Docker image
+      run: |
+        docker build -t ${{ secrets.AZURE_CONTAINER_REGISTRY }}/billpredictor:${{ github.sha }} .
+
+    # Paso 4: Subir la imagen a Azure Container Registry
+    - name: Push Docker image to ACR
+      run: |
+        docker push ${{ secrets.AZURE_CONTAINER_REGISTRY }}/billpredictor:${{ github.sha }}
+
+    # Paso 5: Desplegar en Azure Web App
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ secrets.AZURE_WEB_APP_NAME }}
+        images: ${{ secrets.AZURE_CONTAINER_REGISTRY }}/billpredictor:${{ github.sha }}
+        
